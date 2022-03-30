@@ -26,7 +26,7 @@
                         continue;
                     }
                 }
-                catch (FormatException)
+                catch
                 {
                     Console.WriteLine("Неверный формат номера операции");
                     PressAnyKey();
@@ -40,7 +40,7 @@
                     Console.WriteLine("Введите второй операнд");
                     operand2 = Convert.ToDecimal(Console.ReadLine());
                 }
-                catch (FormatException)
+                catch
                 {
                     Console.WriteLine("Неверный формат операнда");
                     PressAnyKey();
@@ -48,32 +48,41 @@
                 }
 
                 decimal result = 0;
-                switch (operation)
+                try
                 {
-                    case 1:
-                        result = Addition(operand1, operand2);
-                        break;
-                    case 2:
-                        result = Subtraction(operand1, operand2);
-                        break;
-                    case 3:
-                        result = Multiplication(operand1, operand2);
-                        break;
-                    case 4:
-                        try
-                        {
-                            result = Division(operand1, operand2);
-                        }
-                        catch (DivideByZeroException)
-                        {
-                            Console.WriteLine("Деление на ноль");
-                            PressAnyKey();
-                            continue;
-                        }
-                        break;
+                    switch (operation)
+                    {
+                        case 1:
+                            result = Addition(operand1, operand2);
+                            break;
+                        case 2:
+                            result = Subtraction(operand1, operand2);
+                            break;
+                        case 3:
+                            result = Multiplication(operand1, operand2);
+                            break;
+                        case 4:
+                            try
+                            {
+                                result = Division(operand1, operand2);
+                            }
+                            catch (DivideByZeroException)
+                            {
+                                Console.WriteLine("Деление на ноль");
+                                PressAnyKey();
+                                continue;
+                            }
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Переполнение при выполнении операции");
+                    PressAnyKey();
+                    continue;
                 }
 
-                Console.WriteLine("Результат: " + result);
+                    Console.WriteLine("Результат: " + result);
                 PressAnyKey();
             }
         }
