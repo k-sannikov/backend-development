@@ -39,7 +39,7 @@ namespace ScrumBoard.Column
             return null;
         }
 
-        public bool EditTask(string GUID, string name, string description)
+        public bool EditTask(string GUID, string name, string description, TaskPriority priority)
         {
             for (int i = 0; i < _tasksList.Count; i++)
             {
@@ -47,6 +47,7 @@ namespace ScrumBoard.Column
                 {
                     _tasksList[i].Name = name;
                     _tasksList[i].Description = description;
+                    _tasksList[i].Priority = priority;
                     return true;
                 }
             }

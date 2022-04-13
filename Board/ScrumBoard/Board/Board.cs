@@ -83,11 +83,11 @@ namespace ScrumBoard.Board
             return _columnList;
         }
 
-        public void EditTask(string GUID, string name, string description)
+        public void EditTask(string GUID, string name, string description, TaskPriority priority)
         {
             for (int i = 0; i < _columnList.Count; i++)
             {
-                if (_columnList[i].EditTask(GUID, name, description))
+                if (_columnList[i].EditTask(GUID, name, description, priority))
                 {
                     return;
                 }

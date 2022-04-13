@@ -19,7 +19,7 @@ namespace ScrumBoard.Board
 
         public List<IColumn> GetAllColumn();
 
-        public void EditTask(string GUID, string name, string description);
+        public void EditTask(string GUID, string name, string description, TaskPriority priority);
 
         public void DeleteTask(string GUID);
 

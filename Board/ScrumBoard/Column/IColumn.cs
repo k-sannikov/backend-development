@@ -12,7 +12,7 @@ namespace ScrumBoard.Column
 
         public ITask? GetTask(string GUID);
 
-        public bool EditTask(string GUID, string name, string description);
+        public bool EditTask(string GUID, string name, string description, TaskPriority priority);
 
         public bool DeleteTask(string GUID);
 
