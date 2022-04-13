@@ -1,4 +1,4 @@
-using Xunit;
+п»їusing Xunit;
 using System.Collections.Generic;
 using ScrumBoard.Task;
 using ScrumBoard.Column;
@@ -10,11 +10,11 @@ namespace ScrumBoardTest
         [Fact]
         public void CreateColumn_WithProperties()
         {
-            //подготовка
-            string columnName = "Название колонки";
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string columnName = "РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё";
+            //РґРµР№СЃС‚РІРёРµ
             IColumn column = new Column(columnName);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.False(string.IsNullOrEmpty(column.GUID));
             Assert.Equal(columnName, column.Name);
             Assert.Empty(column.GetAllTask());
@@ -23,53 +23,53 @@ namespace ScrumBoardTest
         [Fact]
         public void ChangeColumnName_NameWillChange()
         {
-            //подготовка
-            string newColumnName = "Новое название колонки";
-            IColumn column = new Column("Название колонки");
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string newColumnName = "РќРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё";
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            //РґРµР№СЃС‚РІРёРµ
             column.Name = newColumnName;
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(newColumnName, column.Name);
         }
 
         [Fact]
         public void AddTask_InColumn_TaskWillBeAdded()
         {
-            //подготовка
-            string columnName = "Название колонки";
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string columnName = "РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё";
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
             IColumn column = new Column(columnName);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             column.AddTask(task);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(task, column.GetAllTask()[0]);
         }
 
         [Fact]
         public void GetTask_FromColumn_ReturnTask()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
             column.AddTask(task);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             ITask? retTask = column.GetTask(task.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(task, retTask);
         }
 
         [Fact]
         public void EditTask_InColumn_TaskWillChange()
         {
-            //подготовка
-            string newTaskName = "Новая задача";
-            string newTaskDescription = "Новое описание задачи";
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string newTaskName = "РќРѕРІР°СЏ Р·Р°РґР°С‡Р°";
+            string newTaskDescription = "РќРѕРІРѕРµ РѕРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё";
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
             column.AddTask(task);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             column.EditTask(task.GUID, newTaskName, newTaskDescription, TaskPriority.High);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             ITask? retTask = column.GetTask(task.GUID);
             Assert.NotNull(retTask);
             Assert.Equal(newTaskName, retTask.Name);
@@ -80,30 +80,30 @@ namespace ScrumBoardTest
         [Fact]
         public void DeleteTask_InColumn_TaskWillDelete()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
             column.AddTask(task);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             column.DeleteTask(task.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Null(column.GetTask(task.GUID));
         }
 
         [Fact]
         public void GetAllTask_FromColumn_ReturnAllTask()
         {
-            //подготовка
-            ITask task1 = new Task("Задача1", "Описание задачи1", TaskPriority.Medium);
-            ITask task2 = new Task("Задача2", "Описание задачи2", TaskPriority.Low);
-            ITask task3 = new Task("Задача3", "Описание задачи3", TaskPriority.High);
-            IColumn column = new Column("Название колонки");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task1 = new Task("Р—Р°РґР°С‡Р°1", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё1", TaskPriority.Medium);
+            ITask task2 = new Task("Р—Р°РґР°С‡Р°2", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё2", TaskPriority.Low);
+            ITask task3 = new Task("Р—Р°РґР°С‡Р°3", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё3", TaskPriority.High);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
             column.AddTask(task1);
             column.AddTask(task2);
             column.AddTask(task3);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             List<ITask> taskList = column.GetAllTask();
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(new List<ITask>() { task1, task2, task3 }, taskList);
         }
     }

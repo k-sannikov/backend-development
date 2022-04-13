@@ -1,4 +1,4 @@
-using Xunit;
+п»їusing Xunit;
 using ScrumBoard.Task;
 
 namespace ScrumBoardTest
@@ -8,12 +8,12 @@ namespace ScrumBoardTest
         [Fact]
         public void CreateTask_WithProperties()
         {
-            //подготовка
-            string taskName = "Задача";
-            string taskDescription = "Описание задачи";
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string taskName = "Р—Р°РґР°С‡Р°";
+            string taskDescription = "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё";
+            //РґРµР№СЃС‚РІРёРµ
             ITask task = new Task(taskName, taskDescription, TaskPriority.Medium);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.False(string.IsNullOrEmpty(task.GUID));
             Assert.Equal(taskName, task.Name);
             Assert.Equal(taskDescription, task.Description);
@@ -23,35 +23,35 @@ namespace ScrumBoardTest
         [Fact]
         public void ChangeTaskName_NameWillChange()
         {
-            //подготовка
-            string newTaskName = "Новое название задачи";
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string newTaskName = "РќРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ Р·Р°РґР°С‡Рё";
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            //РґРµР№СЃС‚РІРёРµ
             task.Name = newTaskName;
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(newTaskName, task.Name);
         }
 
         [Fact]
         public void ChangeTaskDescription_DescriptionWillChange()
         {
-            //подготовка
-            string newTaskDescription = "Новое описание задачи";
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string newTaskDescription = "РќРѕРІРѕРµ РѕРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё";
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            //РґРµР№СЃС‚РІРёРµ
             task.Description = newTaskDescription;
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(newTaskDescription, task.Description);
         }
 
         [Fact]
         public void ChangeTaskPriority_PriorityWillChange()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            //РґРµР№СЃС‚РІРёРµ
             task.Priority = TaskPriority.Low;
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(TaskPriority.Low, task.Priority);
         }
     }

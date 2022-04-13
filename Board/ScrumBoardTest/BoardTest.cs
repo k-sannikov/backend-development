@@ -1,4 +1,4 @@
-using Xunit;
+п»їusing Xunit;
 using System.Collections.Generic;
 using ScrumBoard.Task;
 using ScrumBoard.Column;
@@ -12,11 +12,11 @@ namespace ScrumBoardTest
         [Fact]
         public void CreateBoard_WithProperties()
         {
-            //подготовка
-            string boardName = "Название доски";
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string boardName = "РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё";
+            //РґРµР№СЃС‚РІРёРµ
             IBoard board = new Board(boardName);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(boardName, board.Name);
             Assert.Empty(board.GetAllColumn());
         }
@@ -24,166 +24,166 @@ namespace ScrumBoardTest
         [Fact]
         public void AddColumn_InBoard_ColumnWillBeAdded()
         {
-            //подготовка
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
-            //действие
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ
             board.AddColumn(column);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(column, board.GetAllColumn()[0]);
         }
 
         [Fact]
         public void AddExistColumn_InBoard_ReturnExeption()
         {
-            //подготовка
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column);
-            //действие/проверка
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<ColumnExistException>(() => board.AddColumn(column));
         }
 
         [Fact]
         public void EditColumnName_InBoard_ColumnNameWillChange()
         {
-            //подготовка
-            string newColumnName = "Новое название колонки";
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string newColumnName = "РќРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё";
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.EditColumnName(column.GUID, newColumnName);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(newColumnName, column.Name);
         }
 
         [Fact]
         public void EditNotExistColumnName_InBoard_ReturnExeption()
         {
-            //подготовка
-            IBoard board = new Board("Название доски");
-            //действие/проверка
-            Assert.Throws<ColumnNotFoundException>(() => board.EditColumnName("", "Новое название колонки"));
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
+            Assert.Throws<ColumnNotFoundException>(() => board.EditColumnName("", "РќРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё"));
         }
 
         [Fact]
         public void AddTask_OnBoardInDefaultColumn_TaskWillBeAdded()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.AddTask(task);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(task, column.GetAllTask()[0]);
         }
 
         [Fact]
         public void AddTask_OnBoardInSpecificColumn_TaskWillBeAdded()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column1 = new Column("Название колонки1");
-            IColumn column2 = new Column("Название колонки2");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column1 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё1");
+            IColumn column2 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё2");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column1);
             board.AddColumn(column2);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.AddTask(task, 1);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(task, column2.GetAllTask()[0]);
         }
 
         [Fact]
         public void AddTask_OnBoardInNotExistColumn_ReturnExeption()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IBoard board = new Board("Название доски");
-            //действие/проверка
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<ColumnNotFoundException>(() => board.AddTask(task, 5));
         }
 
         [Fact]
         public void GetTask_FromBoard_ReturnTask()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column);
             board.AddTask(task);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             ITask retTask = board.GetTask(task.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(task, retTask);
         }
 
         [Fact]
         public void GetNotExistTask_FromBoard_ReturnExeption()
         {
-            //подготовка
-            IBoard board = new Board("Название доски");
-            //действие/проверка
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<TaskNotFoundException>(() => board.GetTask(""));
         }
 
         [Fact]
         public void GetColumn_FromBoard_ReturnColumn()
         {
-            //подготовка
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             IColumn retColumn = board.GetColumn(column.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(column, retColumn);
         }
 
         [Fact]
         public void GetNotExistColumn_FromBoard_ReturnExeption()
         {
-            //подготовка
-            IBoard board = new Board("Название доски");
-            //действие/проверка
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<ColumnNotFoundException>(() => board.GetColumn(""));
         }
 
         [Fact]
         public void GetAllColumn_FromBoard_ReturnAllColumn()
         {
-            //подготовка
-            IColumn column1 = new Column("Название колонки1");
-            IColumn column2 = new Column("Название колонки2");
-            IColumn column3 = new Column("Название колонки3");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IColumn column1 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё1");
+            IColumn column2 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё2");
+            IColumn column3 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё3");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column1);
             board.AddColumn(column2);
             board.AddColumn(column3);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             List<IColumn> columnList = board.GetAllColumn();
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Equal(new List<IColumn>() { column1, column2, column3 }, columnList);
         }
 
         [Fact]
         public void EditTask_OnBoard_TaskWillChange()
         {
-            //подготовка
-            string newTaskName = "Новая задача";
-            string newTaskDescription = "Новое описание задачи";
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            string newTaskName = "РќРѕРІР°СЏ Р·Р°РґР°С‡Р°";
+            string newTaskDescription = "РќРѕРІРѕРµ РѕРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё";
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             column.AddTask(task);
             board.AddColumn(column);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.EditTask(task.GUID, newTaskName, newTaskDescription, TaskPriority.High);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             ITask retTask = board.GetTask(task.GUID);
             Assert.Equal(newTaskName, retTask.Name);
             Assert.Equal(newTaskDescription, retTask.Description);
@@ -193,72 +193,72 @@ namespace ScrumBoardTest
         [Fact]
         public void EditNotExistTask_OnBoard_ReturnExeption()
         {
-            //подготовка
-            IBoard board = new Board("Название доски");
-            //действие/проверка
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<TaskNotFoundException>(() => board.EditTask("", "", "", TaskPriority.High));
         }
 
         [Fact]
         public void DeleteTask_OnBoard_TaskWillDelete()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             column.AddTask(task);
             board.AddColumn(column);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.DeleteTask(task.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Throws<TaskNotFoundException>(() => board.GetTask(task.GUID));
         }
 
         [Fact]
         public void DeleteNotExistTask_OnBoard_ReturnExeption()
         {
-            //подготовка
-            IBoard board = new Board("Название доски");
-            //действие/проверка
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<TaskNotFoundException>(() => board.DeleteTask(""));
         }
 
         [Fact]
         public void DeleteColumn_OnBoard_ColumnWillDelete()
         {
-            //подготовка
-            IColumn column = new Column("Название колонки");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IColumn column = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.DeleteColumn(column.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Throws<ColumnNotFoundException>(() => board.GetColumn(column.GUID));
         }
 
         [Fact]
         public void DeleteNotExistColumn_OnBoard_ReturnExeption()
         {
-            //подготовка
-            IBoard board = new Board("Название доски");
-            //действие/проверка
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
+            //РґРµР№СЃС‚РІРёРµ/РїСЂРѕРІРµСЂРєР°
             Assert.Throws<ColumnNotFoundException>(() => board.DeleteColumn(""));
         }
 
         [Fact]
         public void TaskTransfer_OnBoard_ColumnWillDelete()
         {
-            //подготовка
-            ITask task = new Task("Задача", "Описание задачи", TaskPriority.Medium);
-            IColumn column1 = new Column("Название колонки1");
-            IColumn column2 = new Column("Название колонки2");
-            IBoard board = new Board("Название доски");
+            //РїРѕРґРіРѕС‚РѕРІРєР°
+            ITask task = new Task("Р—Р°РґР°С‡Р°", "РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё", TaskPriority.Medium);
+            IColumn column1 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё1");
+            IColumn column2 = new Column("РќР°Р·РІР°РЅРёРµ РєРѕР»РѕРЅРєРё2");
+            IBoard board = new Board("РќР°Р·РІР°РЅРёРµ РґРѕСЃРєРё");
             board.AddColumn(column1);
             board.AddColumn(column2);
             board.AddTask(task);
-            //действие
+            //РґРµР№СЃС‚РІРёРµ
             board.TaskTransfer(column2.GUID, task.GUID);
-            //проверка
+            //РїСЂРѕРІРµСЂРєР°
             Assert.Empty(board.GetColumn(column1.GUID).GetAllTask());
             Assert.Equal(task, board.GetColumn(column2.GUID).GetTask(task.GUID));
         }
