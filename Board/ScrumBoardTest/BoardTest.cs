@@ -45,6 +45,21 @@ namespace ScrumBoardTest
         }
 
         [Fact]
+        public void AddExtraColumn_InBoard_ReturnExeption()
+        {
+            //подготовка
+            IBoard board = new Board("Название доски");
+            for (int i = 1; i <= 10; i++)
+            {
+                board.AddColumn(new Column("Название колонки" + i));
+            }
+            //действие/проверка
+            Assert.Throws<ColumnsOverflowLimitException>(
+                () => board.AddColumn(new Column("Название колонки 11"))
+            );
+        }
+
+        [Fact]
         public void EditColumnName_InBoard_ColumnNameWillChange()
         {
             //подготовка
