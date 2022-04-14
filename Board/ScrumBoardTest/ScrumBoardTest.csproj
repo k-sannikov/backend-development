@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ScrumBoard\ScrumBoard.csproj" />
+    <ProjectReference Include="..\ScrumBoardLibrary\ScrumBoardLibrary.csproj" />
   </ItemGroup>
 
 </Project>
