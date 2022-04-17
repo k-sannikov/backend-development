@@ -1,9 +1,8 @@
-﻿namespace ScrumBoard.Exception
+﻿namespace ScrumBoard.Exception;
+
+public class ColumnsOverflowLimitException : System.Exception
 {
-    public class ColumnsOverflowLimitException : System.Exception
+    public ColumnsOverflowLimitException() : base("Превышение лимита колонок")
     {
-        public ColumnsOverflowLimitException() : base("Превышение лимита колонок")
-        {
-        }
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace ScrumBoard.Exception
+﻿namespace ScrumBoard.Exception;
+
+public class ColumnNotFoundException : System.Exception
 {
-    public class ColumnNotFoundException : System.Exception
+    public ColumnNotFoundException() : base("Колонка не найдена")
     {
-        public ColumnNotFoundException() : base("Колонка не найдена")
-        {
-        }
     }
 }

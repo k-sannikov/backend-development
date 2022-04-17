@@ -1,80 +1,79 @@
 ﻿using ScrumBoard.Exception;
 using ScrumBoard.Task;
 
-namespace ScrumBoard.Column
+namespace ScrumBoard.Column;
+
+public class Column : IColumn
 {
-    public class Column : IColumn
+    public Column(string name)
     {
-        public Column(string name)
+        GUID = Guid.NewGuid().ToString();
+        Name = name;
+        _tasksList = new List<ITask>();
+    }
+
+    public string GUID { get; }
+
+    public string Name { get; set; }
+
+    private readonly List<ITask> _tasksList;
+
+    public void AddTask(ITask task)
+    {
+        if (_tasksList.Contains(task))
         {
-            GUID = Guid.NewGuid().ToString();
-            Name = name;
-            _tasksList = new List<ITask>();
+            throw new TaskExistException();
         }
+        _tasksList.Add(task);
+    }
 
-        public string GUID { get; }
-
-        public string Name { get; set; }
-
-        private readonly List<ITask> _tasksList;
-
-        public void AddTask(ITask task)
+    public ITask? GetTask(string GUID)
+    {
+        for (int i = 0; i < _tasksList.Count; i++)
         {
-            if (_tasksList.Contains(task))
+            if (_tasksList[i].GUID == GUID)
             {
-                throw new TaskExistException();
+                return _tasksList[i];
             }
-            _tasksList.Add(task);
         }
+        return null;
+    }
 
-        public ITask? GetTask(string GUID)
+    public bool EditTask(string GUID, string name, string description, TaskPriority priority)
+    {
+        for (int i = 0; i < _tasksList.Count; i++)
         {
-            for (int i = 0; i < _tasksList.Count; i++)
+            if (_tasksList[i].GUID == GUID)
             {
-                if (_tasksList[i].GUID == GUID)
-                {
-                    return _tasksList[i];
-                }
+                _tasksList[i].Name = name;
+                _tasksList[i].Description = description;
+                _tasksList[i].Priority = priority;
+                return true;
             }
-            return null;
         }
+        return false;
+    }
 
-        public bool EditTask(string GUID, string name, string description, TaskPriority priority)
+    public bool DeleteTask(string GUID)
+    {
+        for (int i = 0; i < _tasksList.Count; i++)
         {
-            for (int i = 0; i < _tasksList.Count; i++)
+            if (_tasksList[i].GUID == GUID)
             {
-                if (_tasksList[i].GUID == GUID)
-                {
-                    _tasksList[i].Name = name;
-                    _tasksList[i].Description = description;
-                    _tasksList[i].Priority = priority;
-                    return true;
-                }
+                _tasksList.RemoveAt(i);
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
-        public bool DeleteTask(string GUID)
-        {
-            for (int i = 0; i < _tasksList.Count; i++)
-            {
-                if (_tasksList[i].GUID == GUID)
-                {
-                    _tasksList.RemoveAt(i);
-                    return true;
-                }
-            }
-            return false;
-        }
+    public List<ITask> GetAllTask()
+    {
+        return _tasksList;
+    }
 
-        public List<ITask> GetAllTask()
-        {
-            return _tasksList;
-        }
-
-        public void DeleteAllTask()
-        {
-            _tasksList.Clear();
-        }
+    public void DeleteAllTask()
+    {
+        _tasksList.Clear();
     }
 }
