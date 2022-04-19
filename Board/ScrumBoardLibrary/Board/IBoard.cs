@@ -27,5 +27,5 @@ public interface IBoard
 
     public void DeleteColumn(string GUID);
 
-    public void TaskTransfer(string finalColumnGUID, string taskGUID);
+    public void TransferTask(string finalColumnGUID, string taskGUID);
 }

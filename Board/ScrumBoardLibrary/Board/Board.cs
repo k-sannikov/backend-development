@@ -123,7 +123,7 @@ public class Board : IBoard
         throw new ColumnNotFoundException();
     }
 
-    public void TaskTransfer(string finalColumnGUID, string taskGUID)
+    public void TransferTask(string finalColumnGUID, string taskGUID)
     {
         ITask task = GetTask(taskGUID);
         DeleteTask(task.GUID);
