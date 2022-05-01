@@ -21,7 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ScrumBoardLibrary\ScrumBoardLibrary.csproj" />
+    <Folder Include="ApplicationCore\Entities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ApplicationCore\ApplicationCore.csproj" />
   </ItemGroup>
 
 </Project>

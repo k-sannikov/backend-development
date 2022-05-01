@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ScrumBoard.Task;
 using ScrumBoard.Column;
 using ScrumBoard.Board;
-using ScrumBoard.Exception;
+using ScrumBoard.Exceptions;
 
 namespace ScrumBoardTest
 {

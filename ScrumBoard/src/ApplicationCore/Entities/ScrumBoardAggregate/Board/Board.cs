@@ -1,4 +1,4 @@
-﻿using ScrumBoard.Exception;
+﻿using ScrumBoard.Exceptions;
 using ScrumBoard.Column;
 using ScrumBoard.Task;
 

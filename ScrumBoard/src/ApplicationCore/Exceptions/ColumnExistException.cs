@@ -1,6 +1,6 @@
-﻿namespace ScrumBoard.Exception;
+﻿namespace ScrumBoard.Exceptions;
 
-public class TaskExistException : System.Exception
+public class TaskExistException : Exception
 {
     public TaskExistException() : base("Задача существует")
     {

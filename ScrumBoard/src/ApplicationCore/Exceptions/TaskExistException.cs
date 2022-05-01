@@ -1,6 +1,6 @@
-﻿namespace ScrumBoard.Exception;
+﻿namespace ScrumBoard.Exceptions;
 
-public class ColumnExistException : System.Exception
+public class ColumnExistException : Exception
 {
     public ColumnExistException() : base("Колонка существует")
     {
