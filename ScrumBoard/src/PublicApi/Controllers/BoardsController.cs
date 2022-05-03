@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ScrumBoardAPI.DTO;
-using ScrumBoardAPI.Models;
+﻿using ApplicationCore.DTO;
+using ApplicationCore.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ScrumBoardAPI.Controllers;
 
@@ -14,37 +14,28 @@ public class BoardsController : ControllerBase
     {
         _repository = repository;
     }
-    
+
     // Получить список досок
     // GET: api/boards
     [HttpGet]
     public IActionResult GetListBoards()
     {
-        IEnumerable<BoardDTO> boards;
-        try
-        {
-            boards = _repository.GetAllBoard();
-        }
-        catch
-        {
-            boards = Enumerable.Empty<BoardDTO>();
-        }
-        return Ok(boards);
+        return Ok(_repository.GetListBoard());
     }
 
     // Получить доску
-    // GET api/boards/{boardGUID}
-    [HttpGet("{boardGUID}")]
-    public IActionResult GetBoardByGUID(string boardGUID)
+    // GET api/boards/{boardId}
+    [HttpGet("{boardId}")]
+    public IActionResult GetBoardByGUID(int boardId)
     {
         BoardDTO board;
         try
         {
-            board = _repository.GetBoard(boardGUID);
+            board = _repository.GetBoard(boardId);
         }
-        catch
+        catch(Exception e)
         {
-            return NotFound();
+            return NotFound(e.Message);
         }
         return Ok(board);
     }
@@ -56,139 +47,139 @@ public class BoardsController : ControllerBase
     {
         try
         {
-            _repository.AddBoard(param);
+            _repository.CreateBoard(param);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Удалить доску
-    // DELETE api/boards/{boardGUID}
-    [HttpDelete("{boardGUID}")]
-    public IActionResult DeleteBoard(string boardGUID)
+    // DELETE api/boards/{boardId}
+    [HttpDelete("{boardId}")]
+    public IActionResult DeleteBoard(int boardId)
     {
         try
         {
-            _repository.DeleteBoard(boardGUID);
+            _repository.DeleteBoard(boardId);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Создать колонку
-    // POST api/boards/{boardGUID}/column
-    [HttpPost("{boardGUID}/column")]
-    public IActionResult CreateColumn(string boardGUID, [FromBody] CreateColumnDTO param)
+    // POST api/boards/{boardId}/column
+    [HttpPost("{boardId}/column")]
+    public IActionResult CreateColumn(int boardId, [FromBody] CreateColumnDTO param)
     {
         try
         {
-            _repository.AddColumn(boardGUID, param);
+            _repository.CreateColumn(boardId, param);
         }
-        catch
+        catch(Exception e)
         {
-            return NotFound();
+            return NotFound(e.Message);
         }
         return Ok();
     }
 
     // Редактировать колонку
-    // PUT api/boards/{columnGUID}/column
-    [HttpPut("{boardGUID}/column")]
-    public IActionResult EditColumn(string boardGUID, [FromBody] EditColumnDTO param)
+    // PUT api/boards/column/{columnId}
+    [HttpPut("column/{columnId}")]
+    public IActionResult EditColumn(int columnId, [FromBody] EditColumnDTO param)
     {
         try
         {
-            _repository.EditColumn(boardGUID, param);
+            _repository.EditColumn(columnId, param);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Удалить колонку
-    // DELETE api/boards/<columnGUID>/column
-    [HttpDelete("{boardGUID}/column/{columnGUID}")]
-    public IActionResult DeleteColumn(string boardGUID, string columnGUID)
+    // DELETE api/boards/column/{columnId}
+    [HttpDelete("column/{columnId}")]
+    public IActionResult DeleteColumn(int columnId)
     {
         try
         {
-            _repository.DeleteColumn(boardGUID, columnGUID);
+            _repository.DeleteColumn(columnId);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Создать задачу
-    // POST api/boards/{boardGUID}/task
-    [HttpPost("{boardGUID}/task")]
-    public IActionResult CreateTask(string boardGUID, [FromBody] CreateTaskDTO param)
+    // POST api/boards/{boardId}/task
+    [HttpPost("{boardId}/task")]
+    public IActionResult CreateTask(int boardId, [FromBody] CreateTaskDTO param)
     {
         try
         {
-            _repository.AddTask(boardGUID, param);
+            _repository.CreateTask(boardId, param);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Редактировать задачу
-    // PUT api/boards/{boardGUID}/task
-    [HttpPut("{boardGUID}/task")]
-    public IActionResult EditTask(string boardGUID, [FromBody] EditTaskDTO param)
+    // PUT api/boards/task/{taskId}
+    [HttpPut("task/{taskId}")]
+    public IActionResult EditTask(int taskId, [FromBody] EditTaskDTO param)
     {
         try
         {
-            _repository.EditTask(boardGUID, param);
+            _repository.EditTask(taskId, param);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Удалить задачу
-    // DELETE api/boards/{boardGUID}/task/{taskGUID}
-    [HttpDelete("{boardGUID}/task/{taskGUID}")]
-    public IActionResult DeleteTask(string boardGUID, string taskGUID)
+    // DELETE api/boards/task/{taskId}
+    [HttpDelete("task/{taskId}")]
+    public IActionResult DeleteTask(int taskId)
     {
         try
         {
-            _repository.DeleteTask(boardGUID, taskGUID);
+            _repository.DeleteTask(taskId);
         }
-        catch
+        catch(Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }
 
     // Переместить задачу из колонки в колонку
-    // PUT api/boards/{boardGUID}/task{taskGUID}
-    [HttpPut("{boardGUID}/task/{taskGUID}")]
-    public IActionResult TransferTask(string boardGUID, string taskGUID, [FromBody] TransferTaskDTO param)
+    // PUT api/boards/columns/{columnId}/task/{taskId}
+    [HttpPut("column/{columnId}/task/{taskId}")] 
+    public IActionResult TransferTask(int taskId, int columnId)
     {
         try
         {
-            _repository.TransferTask(boardGUID, taskGUID, param);
+            _repository.TransferTask(taskId, columnId);
         }
-        catch
+        catch (Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
         return Ok();
     }

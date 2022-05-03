@@ -1,4 +1,4 @@
-﻿namespace ScrumBoard.Exceptions;
+﻿namespace ApplicationCore.Exceptions;
 
 public class TaskNotFoundException : Exception
 {
