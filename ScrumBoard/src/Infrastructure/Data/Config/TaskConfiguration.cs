@@ -10,17 +10,17 @@ public class TaskConfiguration : IEntityTypeConfiguration<Task>
     {
         builder.ToTable("Task");
 
-        builder.HasKey(ci => ci.TaskId);
+        builder.HasKey(t => t.TaskId);
 
-        builder.Property(ci => ci.Name)
+        builder.Property(t => t.Name)
             .IsRequired()
             .HasMaxLength(100);
 
-        builder.Property(ci => ci.Description)
+        builder.Property(t => t.Description)
             .IsRequired()
             .HasMaxLength(255);
 
-        builder.Property(ci => ci.Priority)
+        builder.Property(t => t.Priority)
             .IsRequired();
     }
 }

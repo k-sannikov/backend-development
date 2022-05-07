@@ -10,9 +10,9 @@ public class BoardConfiguration : IEntityTypeConfiguration<Board>
     {
         builder.ToTable("Board");
 
-        builder.HasKey(ci => ci.BoardId);
+        builder.HasKey(b => b.BoardId);
 
-        builder.Property(ci => ci.Name)
+        builder.Property(b => b.Name)
             .IsRequired()
             .HasMaxLength(100);
     }

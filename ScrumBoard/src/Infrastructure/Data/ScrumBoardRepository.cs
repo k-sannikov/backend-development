@@ -11,7 +11,6 @@ namespace Infrastructure.Data;
 
 public class ScrumBoardRepository : IScrumBoardRepository
 {
-
     private readonly ScrumBoardContext _db;
 
     public ScrumBoardRepository(IConfiguration configuration)
@@ -211,6 +210,5 @@ public class ScrumBoardRepository : IScrumBoardRepository
 
         task.ColumnId = columnId;
         _db.SaveChanges();
-
     }
 }

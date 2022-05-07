@@ -10,9 +10,9 @@ public class ColumnConfiguration : IEntityTypeConfiguration<Column>
     {
         builder.ToTable("Column");
 
-        builder.HasKey(ci => ci.ColumnId);
+        builder.HasKey(c => c.ColumnId);
 
-        builder.Property(ci => ci.Name)
+        builder.Property(c => c.Name)
             .IsRequired()
             .HasMaxLength(100);
     }

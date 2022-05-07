@@ -13,8 +13,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 
-Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
-
 builder.Services.AddScoped<IScrumBoardRepository, ScrumBoardRepository>();
 
 WebApplication? app = builder.Build();
